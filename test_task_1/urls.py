@@ -21,7 +21,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('user.urls')),
-    # path('oauth/', include('social_django.urls', namespace='social')),
-    # path("goals/", include("goals.urls")),
-    # path("bot/", include("bot.urls")),
+    path("trade_network/", include("trade_network.urls")),
 ]

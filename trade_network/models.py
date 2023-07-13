@@ -1,3 +1,5 @@
+from datetime import timezone, datetime
+
 from django.db import models
 from django.db.models import SET_DEFAULT, CASCADE
 
@@ -27,6 +29,15 @@ class Node(models.Model):
         verbose_name = 'trading network member'
         verbose_name_plural = 'trading network members'
         ordering = ['level']
+
+    def save(self, *args, **kwargs):
+        """
+        The save function adds additional functionality to the method of the parent class. Automatically fills
+        in fields when creating instances of the class. After that, it calls the method of the parent class.
+        """
+        if not self.id:
+            self.date_of_creation = datetime.now()
+        return super().save(*args, **kwargs)
 
 
 class Contact(models.Model):
