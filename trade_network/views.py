@@ -12,7 +12,7 @@ from trade_network.serializers import NodeCreateSerializer, NodeListSerializer, 
 class NodeCreateView(CreateAPIView):
     """
     The NodeCreateView class inherits from the CreateAPIView class from the rest_framework.generics module
-    and is a class-based view for processing requests with POST methods at the address '/goals/goal_category/create'.
+    and is a class-based view for processing requests with POST methods at the address '/trade_network/node'.
     """
     model: models.Model = Node
     permission_classes: list = [permissions.IsAuthenticated]
@@ -21,10 +21,11 @@ class NodeCreateView(CreateAPIView):
 
 class NodeListView(ListAPIView):
     """
-
+    The NodeListView class inherits from the ListAPIView class from the rest_framework.generics module
+    and is a class-based view for processing requests with GET methods at the address '/trade_network/node/list'.
     """
     model: models.Model = Node
-    queryset = Node.objects.all()
+    queryset: List[Node] = Node.objects.all()
     permission_classes: list = [permissions.IsAuthenticated]
     serializer_class: serializers.ModelSerializer = NodeListSerializer
     filter_backends: list = [DjangoFilterBackend,]
@@ -38,6 +39,6 @@ class NodeView(RetrieveUpdateDestroyAPIView):
     '/trade_network/node/<pk>'.
     """
     model: models.Model = Node
-    queryset = Node.objects.all()
+    queryset: List[Node] = Node.objects.all()
     serializer_class: serializers.ModelSerializer = NodeSerializer
     permission_classes: list = [permissions.IsAuthenticated,]
