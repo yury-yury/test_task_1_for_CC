@@ -44,7 +44,7 @@ class Contact(models.Model):
     """
 
     """
-    memder_id = models.OneToOneField(Node, on_delete=CASCADE)
+    memder = models.OneToOneField(Node, on_delete=CASCADE)
     email = models.EmailField(blank=True, null=True)
     country = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
