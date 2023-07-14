@@ -140,13 +140,19 @@ def level_detection(kwargs: dict) -> int:
     an instance of the Node class. Specifies the hierarchical level of the location of an instance of the Node class.
     Returns the level as an integer.
     """
+    level: int = 0
     if kwargs["supplier"] is None:
-        return 0
-    else:
-        supplier: Node = Node.objects.get(name=kwargs["supplier"])
+        return level
+
+    supplier: Node = Node.objects.get(name=kwargs["supplier"])
+
+    for i in range(2):
+        level += 1
         if supplier.supplier is None:
-            return 1
-        return 2
+            return level
+        supplier = supplier.supplier
+
+    raise Exception("Incorrect links in the hierarchical system")
 
 
 
